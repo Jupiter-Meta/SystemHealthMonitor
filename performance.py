@@ -9,7 +9,7 @@ try:
   temp=subprocess.check_output("vcgencmd measure_temp | awk 'NR==1 {print $1}'", shell=True)
   temp=float(temp[5:9])
 except:
-  temp=subprocess.check_output("cat /sys/class/thermal/thermal_zone0/temp"), shell=True)
+  temp=subprocess.check_output("cat /sys/class/thermal/thermal_zone0/temp", shell=True)
   
 print(temp)
 
