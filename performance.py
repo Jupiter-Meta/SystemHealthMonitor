@@ -15,6 +15,7 @@ print(temp)
 
 print("Available-RAM")
 RAM=int(subprocess.check_output("free | awk 'NR==2 {print $7}'",shell=True))
+RAM=RAM/1024
 print(RAM)
 
 print("CPU usage in %")
