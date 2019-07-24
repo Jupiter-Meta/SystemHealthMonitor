@@ -1,0 +1,13 @@
+[Unit]
+Description= MQTT Subscribe startup Service
+After=mariadb.service network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/home/pi/RPiHealth/performance.sh
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
