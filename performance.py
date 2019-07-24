@@ -23,10 +23,13 @@ CPU=float(subprocess.check_output("top -n1 | awk '/Cpu\(s\):/ {print $2}'",shell
 print(CPU)
 
 print("Disk Usage in %")
-disk=subprocess.check_output("df -h --total | awk 'NR==11 {print $5}'",shell=True)
-print(disk)
-disk=float(disk[:2])
-print(disk)
+try:
+  disk=subprocess.check_output("df -h --total | awk 'NR==11 {print $5}'",shell=True)
+  print(disk)
+  disk=float(disk[:2])
+  print(disk)
+except:
+  disk=0
 
 data={'temp':temp,'CPU':CPU,'RAM':RAM,'disk':disk}
 cur.execute("INSERT INTO performance (temp,RAM,CPU,disk) VALUES (%(temp)s,%(RAM)s,%(CPU)s,%(disk)s);",data)
