@@ -24,6 +24,7 @@ print(CPU)
 
 print("Disk Usage in %")
 disk=subprocess.check_output("df -h --total | awk 'NR==11 {print $5}'",shell=True)
+print(disk)
 disk=float(disk[:2])
 print(disk)
 
