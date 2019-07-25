@@ -10,6 +10,6 @@ urls=("/favicon.ico","dummy")
 @app.route('/')
 def API1():
 	data = {'EnergyAvailability':10,'CostPerUnit':5.6}
-  return jsonify(data)
+	return jsonify(data)
 if __name__ == '__main__':
-  app.run(host='0.0.0.0',port=2020,debug=1)
+	app.run(host='0.0.0.0',port=2020,debug=1)
