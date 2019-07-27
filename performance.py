@@ -9,26 +9,42 @@ cur=conn.cursor()
 port=serial.Serial("/dev/ttyUSB0",baudrate=9600,timeout=.1)
 testarr=[]
 
-cmnd1='m'
-cmnd2=11
-cmnd3="\r"
-cmnd=cmnd1+str(cmnd2)
-
+cmnd='m11'
 port.write(cmnd.encode())
 port.write(str.encode("\r"))
 rcv =port.read(90)
-print(rcv)
-
 rcv=rcv.decode()
 rcv=rcv.replace('L1','')
 l=list(rcv)
-print(l)
 g=list(map(lambda v: float(v) if '.' in v else int(v),re.findall(r'\d+(?:\.\d+)?',rcv)))
-print(g)
 m11_data=g[1]
 print(m11_data)
 
-#realpower=m15_data*m16_data*m11_data
+cmnd='m15'
+port.write(cmnd.encode())
+port.write(str.encode("\r"))
+rcv =port.read(90)
+rcv=rcv.decode()
+rcv=rcv.replace('L1','')
+l=list(rcv)
+g=list(map(lambda v: float(v) if '.' in v else int(v),re.findall(r'\d+(?:\.\d+)?',rcv)))
+m15_data=g[1]
+print(m15_data)
+
+cmnd='m16'
+port.write(cmnd.encode())
+port.write(str.encode("\r"))
+rcv =port.read(90)
+rcv=rcv.decode()
+rcv=rcv.replace('L1','')
+l=list(rcv)
+g=list(map(lambda v: float(v) if '.' in v else int(v),re.findall(r'\d+(?:\.\d+)?',rcv)))
+m16_data=g[1]
+print(m16_data)
+
+
+realpower=m15_data*m16_data*m11_data
+print(realpower)
 
 print("Temperature")
 # try:
