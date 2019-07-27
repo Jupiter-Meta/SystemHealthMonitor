@@ -25,6 +25,8 @@ l=list(rcv)
 print(l)
 g=list(map(lambda v: float(v) if '.' in v else int(v),re.findall(r'\d+(?:\.\d+)?',rcv)))
 print(g)
+m11_data=g[1]
+print(m11_data)
 
 #realpower=m15_data*m16_data*m11_data
 
