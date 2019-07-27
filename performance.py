@@ -1,8 +1,25 @@
 #!/usr/bin/python3
 import subprocess,datetime,pymysql
+import serial,re,operator,math
+from functools import reduce
 
 conn = pymysql.connect(database="BC",user="admin",password="admin",host="localhost")
 cur=conn.cursor()
+
+port=serial.Serial("/dev/ttyUSB0",baudrate=9600,timeout=.1)
+testarr=[]
+
+cmnd1='m'
+cmnd2=11
+cmnd3="\r"
+cmnd=cmnd1+str(cmnd2)
+
+port.write(cmnd.encode())
+port.write(str.encode("\r"))
+rcv =port.read(90)
+print(rcv)
+
+#realpower=m15_data*m16_data*m11_data
 
 print("Temperature")
 # try:
