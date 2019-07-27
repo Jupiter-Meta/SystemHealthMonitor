@@ -18,6 +18,8 @@ port.write(cmnd.encode())
 port.write(str.encode("\r"))
 rcv =port.read(90)
 print(rcv)
+g=list(map(lambda v: float(v) if '.' in v else int(v),re.findall(r'\d+(?:\.\d+)?',rcv)))
+print(g)
 
 #realpower=m15_data*m16_data*m11_data
 
