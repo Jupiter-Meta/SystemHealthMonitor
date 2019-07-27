@@ -18,7 +18,6 @@ rcv=rcv.replace('L1','')
 l=list(rcv)
 g=list(map(lambda v: float(v) if '.' in v else int(v),re.findall(r'\d+(?:\.\d+)?',rcv)))
 m11_data=g[1]
-print(m11_data)
 
 cmnd='m15'
 port.write(cmnd.encode())
@@ -29,7 +28,6 @@ rcv=rcv.replace('L1','')
 l=list(rcv)
 g=list(map(lambda v: float(v) if '.' in v else int(v),re.findall(r'\d+(?:\.\d+)?',rcv)))
 m15_data=g[1]
-print(m15_data)
 
 cmnd='m16'
 port.write(cmnd.encode())
@@ -40,9 +38,8 @@ rcv=rcv.replace('L1','')
 l=list(rcv)
 g=list(map(lambda v: float(v) if '.' in v else int(v),re.findall(r'\d+(?:\.\d+)?',rcv)))
 m16_data=g[1]
-print(m16_data)
 
-
+print("Real Power")
 realpower=m15_data*m16_data*m11_data
 print(realpower)
 
@@ -73,7 +70,7 @@ try:
 except:
   disk=0
 
-data={'temp':temp,'CPU':CPU,'RAM':RAM,'disk':disk}
-cur.execute("INSERT INTO performance (temp,RAM,CPU,disk) VALUES (%(temp)s,%(RAM)s,%(CPU)s,%(disk)s);",data)
+data={'temp':temp,'CPU':CPU,'RAM':RAM,'disk':disk,'realpower':realpower}
+cur.execute("INSERT INTO performance (temp,RAM,CPU,disk,realpower) VALUES (%(temp)s,%(RAM)s,%(CPU)s,%(disk)s,%(realpower)s);",data)
 conn.commit()
 conn.close()
